@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+}
+
+group 'Grid'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    // https://mvnrepository.com/artifact/org.testng/testng
+    implementation group: 'org.testng', name: 'testng', version: '6.14.3'
+    // https://mvnrepository.com/artifact/com.itextpdf/itextpdf
+    implementation group: 'com.itextpdf', name: 'itextpdf', version: '5.0.6'
+    // https://mvnrepository.com/artifact/javax.mail/javax.mail-api
+    compile group: 'javax.mail', name: 'javax.mail-api', version: '1.6.0'
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    implementation group: 'commons-io', name: 'commons-io', version: '2.7'
+
+
+}
+
+test {
+    useTestNG() {
+        useDefaultListeners = true
+        //systemProperties project.properties.subMap(["Environment", "Token", "App", "CurrentPulseCounter"])
+
+    }
+}
+
+task smokeTests(type: Test) { // we define a task with name ‘smokeTests’
+    useTestNG() {
+        useDefaultListeners = true
+        systemProperties project.properties.subMap(["Environment", "Token", "App", "CurrentPulseCounter"])
+        suites 'src/test/parallel.xml'
+        //includeGroups 'smoke' // We define the group name by using ‘includeGroups’ parameter.
+    }
+}

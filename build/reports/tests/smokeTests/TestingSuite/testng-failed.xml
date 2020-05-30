@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [TestingSuite]" parallel="tests">
+  <listeners>
+    <listener class-name="com.vodrive.examveda.TestListener"/>
+  </listeners>
+  <test thread-count="5" verbose="0" name="FirefoxTest(failed)" parallel="methods">
+    <parameter name="browser" value="default"/>
+    <classes>
+      <class name="com.vodrive.examveda.ParallelTestA">
+        <methods>
+          <include name="setUp"/>
+          <include name="tearDown"/>
+          <include name="testPageTitleA1"/>
+          <include name="testPageTitleA2"/>
+        </methods>
+      </class> <!-- com.vodrive.examveda.ParallelTestA -->
+    </classes>
+  </test> <!-- FirefoxTest(failed) -->
+  <test thread-count="5" verbose="0" name="ChromeTest(failed)" parallel="methods">
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="com.vodrive.examveda.ParallelTestB">
+        <methods>
+          <include name="testPageTitleB1"/>
+          <include name="tearDown"/>
+          <include name="testPageTitleB2"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.vodrive.examveda.ParallelTestB -->
+    </classes>
+  </test> <!-- ChromeTest(failed) -->
+</suite> <!-- Failed suite [TestingSuite] -->
